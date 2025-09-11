@@ -1,0 +1,5 @@
+<svg width="200" height="48" viewBox="0 0 200 48" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="48" height="48" rx="8" fill="#1E3A5F"/>
+  <text x="24" y="30" text-anchor="middle" font-size="24" fill="#ffffff" font-family="Arial, sans-serif">SB</text>
+  <text x="60" y="32" font-size="24" fill="#1E3A5F" font-family="Arial, sans-serif">ServiceBook Pros</text>
+</svg>
