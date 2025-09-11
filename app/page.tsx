@@ -9,7 +9,7 @@ import {
   WifiOff,
   CheckCircle,
 } from 'lucide-react';
-import Modal from '../components/Modal';
+
 
 const features = [
   {
@@ -91,7 +91,7 @@ export default function Page() {
 
   return (
     <>
-      <Modal isOpen={open} onClose={() => setOpen(false)} plan={selectedPlan} />
+      
       <section className="py-16 text-center bg-white">
         <div className="mx-auto max-w-5xl px-4">
           <h1 className="text-4xl font-bold text-servicebook-navy mb-4">
