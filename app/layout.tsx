@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     siteName: 'ServiceBook Pros',
     images: [
       {
-        url: '/brand/servicebook-logo.svg',
+        url: '/brand/servicebook_logo_full.png',
         width: 1200,
         height: 630,
         alt: 'ServiceBook Pros',
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: 'ServiceBook Pros',
     description:
       'AI-first field service management for trades. Schedule, dispatch, invoice, sync with QuickBooks, and more.',
-    images: ['/brand/servicebook-logo.svg'],
+    images: ['/brand/servicebook_logo_full.png'],
   },
 
 };
