@@ -103,7 +103,7 @@ export default function Page() {
           <div className="flex justify-center gap-4 flex-wrap">
             <button
               className="px-6 py-3 rounded-md bg-servicebook-bright text-white hover:bg-servicebook-light transition"
-              onClick={() => handleSelect('starter')}
+              onClick={() => { window.location.href = '/switch-from-housecall-pro'; }}
             >
               Get Started
             </button>
