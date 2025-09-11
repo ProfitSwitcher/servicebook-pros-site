@@ -94,6 +94,8 @@ export default function Page() {
       
       <section className="py-16 text-center bg-white">
         <div className="mx-auto max-w-5xl px-4">
+          {/* Logo */}
+          <img src="/brand/servicebook_logo_full.png" alt="ServiceBook Pros logo" className="mx-auto mb-4 h-20 w-auto" />
           <h1 className="text-4xl font-bold text-servicebook-navy mb-4">
             ServiceBook Pros
           </h1>
