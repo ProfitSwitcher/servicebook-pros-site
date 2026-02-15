@@ -1,12 +1,6 @@
-/*
-  Rewritten homepage for ServiceBook Pros.
-  This version adds a navigation bar, a two-column hero section, styled features grid,
-  pricing cards, a call-to-action section, and a footer. It uses Tailwind CSS utilities
-  and the extended color palette defined in tailwind.config.ts.
-*/
-
 'use client';
 
+import Link from 'next/link';
 import {
   CalendarCheck,
   FileText,
@@ -14,9 +8,13 @@ import {
   CreditCard,
   WifiOff,
   CheckCircle,
+  Star,
+  ArrowRight,
+  Users,
+  Zap,
+  Shield,
 } from 'lucide-react';
 
-// Feature definitions with associated icons and descriptions
 const features = [
   {
     icon: CalendarCheck,
@@ -48,216 +46,274 @@ const features = [
     description:
       'Work confidently in the field—even when service is spotty—with full offline capabilities.',
   },
+  {
+    icon: Shield,
+    title: 'Customer Portal',
+    description:
+      'Give customers a branded portal to approve estimates, pay invoices, and track job progress.',
+  },
 ];
 
-// Pricing tiers definitions
-const tiers = [
+const stats = [
+  { value: '2,500+', label: 'Active Pros' },
+  { value: '98%', label: 'Uptime' },
+  { value: '45min', label: 'Avg. Time Saved/Day' },
+  { value: '4.9/5', label: 'App Rating' },
+];
+
+const testimonials = [
   {
-    name: 'Starter',
-    price: '$59/mo',
-    description: 'For solo operators ready to level up.',
-    features: ['1 user', 'Scheduling & dispatch', 'Estimates & invoices', 'Basic reports'],
+    name: 'Mike R.',
+    role: 'Electrician, Dallas TX',
+    quote:
+      'ServiceBook Pros cut our invoicing time in half. The voice-to-invoice feature alone is worth the subscription.',
+    stars: 5,
   },
   {
-    name: 'Pro',
-    price: '$149/mo',
-    description: 'For growing teams needing more power.',
-    features: [
-      'Up to 5 users',
-      'GPS & time tracking',
-      'Price books & proposals',
-      'QuickBooks sync',
-    ],
+    name: 'Sarah K.',
+    role: 'HVAC Business Owner, Denver CO',
+    quote:
+      'Switching from Housecall Pro was painless. The price books already had everything we needed from day one.',
+    stars: 5,
   },
   {
-    name: 'Growth',
-    price: '$299/mo',
-    description: 'For established crews ready for all the tools.',
-    features: [
-      'Up to 8 users',
-      'Custom reports',
-      'Dedicated onboarding',
-      'All add‑ons included',
-    ],
+    name: 'James T.',
+    role: 'Generator Installer, Atlanta GA',
+    quote:
+      'Finally software that understands our trade. Offline mode is a game-changer when we\'re on rural job sites.',
+    stars: 5,
+  },
+];
+
+const faqs = [
+  {
+    q: 'Is there a free trial?',
+    a: 'Yes — every plan comes with a 14-day free trial. No credit card required to start.',
+  },
+  {
+    q: 'Can I import data from another FSM tool?',
+    a: 'Absolutely. We have one-click importers for Housecall Pro, Jobber, ServiceTitan, and CSV files.',
+  },
+  {
+    q: 'Does it work offline?',
+    a: 'Yes. Our mobile app stores jobs, customer info, and price books locally so you can work without cell service.',
+  },
+  {
+    q: 'How does voice-to-invoice work?',
+    a: 'Just talk through the job details after a service call. Our AI creates a draft invoice with line items, labor, and materials — ready for review and send.',
+  },
+  {
+    q: 'Is QuickBooks sync included?',
+    a: 'QuickBooks Online sync is included in the Pro and Growth plans. Starter plan users can add it for $19/mo.',
   },
 ];
 
 export default function Page() {
   return (
     <>
-      {/* Navigation bar */}
-      <nav className="flex items-center justify-between py-4 px-6 bg-white shadow-sm">
-        <div className="flex items-center gap-2">
-          <img
-            src="/brand/servicebook-icon.png"
-            alt="ServiceBook Pros logo"
-            className="h-8 w-8"
-          />
-          <span className="font-semibold text-servicebook-navy text-xl">
-            ServiceBook Pros
-          </span>
-        </div>
-        <div className="flex items-center gap-6">
-          <a
-            href="#features"
-            className="text-servicebook-navy hover:text-servicebook-bright transition"
-          >
-            Features
-          </a>
-          <a
-            href="#pricing"
-            className="text-servicebook-navy hover:text-servicebook-bright transition"
-          >
-            Pricing
-          </a>
-          <a
-            href="/switch-from-housecall-pro"
-            className="text-servicebook-navy hover:text-servicebook-bright transition"
-          >
-            Switch
-          </a>
-        </div>
-      </nav>
-
       {/* Hero section */}
-      <section className="bg-light-gray py-20 px-4">
+      <section className="bg-gradient-to-br from-servicebook-navy to-[#2a5a8f] text-white py-24 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-4xl md:text-5xl font-bold text-servicebook-navy mb-6">
-              AI-first Field Service Management
+            <p className="text-servicebook-light font-medium mb-3 tracking-wide uppercase text-sm">
+              Built by tradespeople, for tradespeople
+            </p>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+              AI-First Field Service Management
             </h1>
-            <p className="text-lg text-professional-gray mb-8">
-              Built by and for trades: electricians, HVAC and generator pros.
+            <p className="text-lg text-gray-200 mb-8 leading-relaxed">
+              Schedule, dispatch, invoice, and get paid — all from one app. Designed for
+              electricians, HVAC technicians, and generator pros.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
-                className="px-6 py-3 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
-                onClick={() => {
-                  window.location.href = '/switch-from-housecall-pro';
-                }}
+              <Link
+                href="/contact"
+                className="px-7 py-3 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition font-medium"
               >
-                Get Started
-              </button>
-              <a
-                href="#demo"
-                className="px-6 py-3 border-2 border-servicebook-bright text-servicebook-bright rounded-md hover:bg-servicebook-bright hover:text-white transition"
+                Start Free Trial
+              </Link>
+              <Link
+                href="/features"
+                className="px-7 py-3 border-2 border-white/30 text-white rounded-md hover:bg-white/10 transition font-medium flex items-center gap-2"
               >
-                Schedule Demo
-              </a>
+                Explore Features <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
           <div className="flex justify-center">
             <img
               src="/brand/servicebook_logo_full.png"
-              alt="ServiceBook Pros hero graphic"
-              className="max-h-60 w-auto"
+              alt="ServiceBook Pros"
+              className="max-h-64 w-auto drop-shadow-2xl"
             />
           </div>
         </div>
       </section>
 
-      {/* Features section */}
-      <section id="features" className="py-20 bg-white px-4">
-        <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-          Features
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {features.map(({ icon: Icon, title, description }) => (
-            <div
-              key={title}
-              className="p-6 border rounded-lg shadow-sm hover:shadow-md transition"
-            >
-              <Icon className="h-8 w-8 text-servicebook-bright mb-4" />
-              <h3 className="text-xl font-semibold text-servicebook-navy mb-2">
-                {title}
-              </h3>
-                <p className="text-professional-gray">{description}</p>
+      {/* Social proof stats */}
+      <section className="bg-white py-12 px-4 border-b">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((stat) => (
+            <div key={stat.label}>
+              <p className="text-3xl font-bold text-servicebook-navy">{stat.value}</p>
+              <p className="text-sm text-professional-gray mt-1">{stat.label}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Pricing section */}
-      <section id="pricing" className="py-20 bg-light-gray px-4">
-        <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-          Pricing
-        </h2>
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {tiers.map(({ name, price, description, features: tierFeatures }) => (
-            <div
-              key={name}
-              className="flex flex-col justify-between p-6 bg-white border rounded-lg shadow-sm hover:shadow-md transition"
-            >
-              <div>
-                <h3 className="text-2xl font-bold text-servicebook-navy mb-2">
-                  {name}
-                </h3>
-                <p className="text-xl text-servicebook-bright font-semibold mb-2">
-                  {price}
-                </p>
-                <p className="text-professional-gray mb-4">{description}</p>
-                <ul className="space-y-2 mb-6">
-                  {tierFeatures.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <CheckCircle className="h-5 w-5 text-servicebook-bright mt-1" />
-                      <span className="text-professional-gray">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <button
-                className="mt-auto px-4 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
-                onClick={() => {
-                  window.location.href = '/switch-from-housecall-pro';
-                }}
+      {/* Features overview */}
+      <section className="py-20 bg-light-gray px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl font-bold text-servicebook-navy mb-4">
+              Everything You Need to Run Your Business
+            </h2>
+            <p className="text-professional-gray max-w-2xl mx-auto">
+              From scheduling to payments, ServiceBook Pros gives you all the tools to manage jobs,
+              crews, and customers — without the bloat.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {features.map(({ icon: Icon, title, description }) => (
+              <div
+                key={title}
+                className="p-6 bg-white border rounded-lg shadow-sm hover:shadow-md transition"
               >
-                Select Plan
-              </button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Demo call-to-action section */}
-      <section id="demo" className="py-20 bg-white px-4">
-        <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-6">
-          Ready to get started?
-        </h2>
-        <p className="text-center text-professional-gray mb-8">
-          Schedule a demo and see how ServiceBook Pros can transform your business.
-        </p>
-        <div className="flex justify-center">
-          <a
-            href="/switch-from-housecall-pro"
-            className="px-8 py-4 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
-          >
-            Schedule Demo
-          </a>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-servicebook-navy text-white py-8">
-        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row md:justify-between items-center">
-          <p className="text-sm">
-            &copy; {new Date().getFullYear()} ServiceBook Pros. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#features" className="hover:text-servicebook-light transition">
-              Features
-            </a>
-            <a href="#pricing" className="hover:text-servicebook-light transition">
-              Pricing
-            </a>
-            <a
-              href="/switch-from-housecall-pro"
-              className="hover:text-servicebook-light transition"
+                <div className="h-12 w-12 rounded-lg bg-servicebook-bright/10 flex items-center justify-center mb-4">
+                  <Icon className="h-6 w-6 text-servicebook-bright" />
+                </div>
+                <h3 className="text-xl font-semibold text-servicebook-navy mb-2">{title}</h3>
+                <p className="text-professional-gray">{description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="text-center mt-10">
+            <Link
+              href="/features"
+              className="inline-flex items-center gap-2 text-servicebook-bright hover:text-servicebook-navy font-medium transition"
             >
-              Switch
-            </a>
+              See all features <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
-      </footer>
+      </section>
+
+      {/* Testimonials */}
+      <section className="py-20 bg-white px-4">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-14">
+            Trusted by Pros Across the Country
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {testimonials.map((t) => (
+              <div
+                key={t.name}
+                className="p-6 bg-light-gray rounded-lg border"
+              >
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: t.stars }).map((_, i) => (
+                    <Star
+                      key={i}
+                      className="h-5 w-5 text-yellow-400 fill-yellow-400"
+                    />
+                  ))}
+                </div>
+                <p className="text-professional-gray mb-4 leading-relaxed italic">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div>
+                  <p className="font-semibold text-servicebook-navy">{t.name}</p>
+                  <p className="text-sm text-gray-500">{t.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section className="py-20 bg-light-gray px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-14">
+            Up and Running in 3 Steps
+          </h2>
+          <div className="space-y-8">
+            {[
+              {
+                step: '1',
+                icon: Users,
+                title: 'Sign Up & Import',
+                desc: 'Create your account and import customers, jobs, and price books from your existing tool — or start fresh.',
+              },
+              {
+                step: '2',
+                icon: Zap,
+                title: 'Customize & Go',
+                desc: 'Set up your crew, service areas, and notification preferences. The app adapts to how you already work.',
+              },
+              {
+                step: '3',
+                icon: CreditCard,
+                title: 'Schedule, Invoice & Get Paid',
+                desc: 'Start dispatching jobs, generating invoices with AI, and collecting payments — all from one dashboard.',
+              },
+            ].map((item) => (
+              <div key={item.step} className="flex gap-6 items-start">
+                <div className="flex-shrink-0 h-12 w-12 rounded-full bg-servicebook-bright text-white flex items-center justify-center font-bold text-lg">
+                  {item.step}
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-servicebook-navy mb-1">{item.title}</h3>
+                  <p className="text-professional-gray">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="py-20 bg-white px-4">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-14">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            {faqs.map((faq) => (
+              <div key={faq.q} className="border-b pb-6">
+                <h3 className="text-lg font-semibold text-servicebook-navy mb-2">{faq.q}</h3>
+                <p className="text-professional-gray">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-20 bg-gradient-to-br from-servicebook-navy to-[#2a5a8f] text-white px-4">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Simplify Your Business?</h2>
+          <p className="text-gray-200 mb-8 text-lg">
+            Join thousands of trades professionals who run their business on ServiceBook Pros.
+            Start your 14-day free trial today.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="px-8 py-4 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition font-medium"
+            >
+              Start Free Trial
+            </Link>
+            <Link
+              href="/pricing"
+              className="px-8 py-4 border-2 border-white/30 text-white rounded-md hover:bg-white/10 transition font-medium"
+            >
+              View Pricing
+            </Link>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

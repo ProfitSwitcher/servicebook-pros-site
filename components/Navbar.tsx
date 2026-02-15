@@ -1,0 +1,85 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+
+const navLinks = [
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/about', label: 'About' },
+  { href: '/switch-from-housecall-pro', label: 'Switch' },
+  { href: '/contact', label: 'Contact' },
+];
+
+export default function Navbar() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <nav className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="max-w-6xl mx-auto flex items-center justify-between py-4 px-6">
+        <Link href="/" className="flex items-center gap-2">
+          <img
+            src="/brand/servicebook-icon.png"
+            alt="ServiceBook Pros logo"
+            className="h-8 w-8"
+          />
+          <span className="font-semibold text-servicebook-navy text-xl">
+            ServiceBook Pros
+          </span>
+        </Link>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-6">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-servicebook-navy hover:text-servicebook-bright transition"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
+          >
+            Get a Demo
+          </Link>
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden text-servicebook-navy"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="md:hidden bg-white border-t px-6 pb-4 space-y-3">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="block text-servicebook-navy hover:text-servicebook-bright transition py-1"
+              onClick={() => setMobileOpen(false)}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="block text-center px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
+            onClick={() => setMobileOpen(false)}
+          >
+            Get a Demo
+          </Link>
+        </div>
+      )}
+    </nav>
+  );
+}
