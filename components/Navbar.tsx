@@ -58,6 +58,12 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <a
+            href="https://servicebook-pros-dashboard.vercel.app"
+            className="text-professional-gray hover:text-servicebook-navy transition"
+          >
+            Log In
+          </a>
           <Link
             href="/contact"
             className="px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
@@ -98,6 +104,13 @@ export default function Navbar() {
               </Link>
             );
           })}
+          <a
+            href="https://servicebook-pros-dashboard.vercel.app"
+            className="block text-servicebook-navy hover:text-servicebook-bright transition py-1"
+            onClick={() => setMobileOpen(false)}
+          >
+            Log In
+          </a>
           <Link
             href="/contact"
             className="block text-center px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
