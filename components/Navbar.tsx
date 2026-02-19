@@ -1,7 +1,9 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -12,17 +14,25 @@ const navLinks = [
   { href: '/contact', label: 'Contact' },
 ];
 
+function isActive(pathname: string, href: string): boolean {
+  if (href.startsWith('/switch-from')) return pathname.startsWith('/switch-from');
+  return pathname === href;
+}
+
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="max-w-6xl mx-auto flex items-center justify-between py-4 px-6">
         <Link href="/" className="flex items-center gap-2">
-          <img
+          <Image
             src="/brand/servicebook-icon.png"
             alt="ServiceBook Pros logo"
-            className="h-8 w-8"
+            width={32}
+            height={32}
+            priority
           />
           <span className="font-semibold text-servicebook-navy text-xl">
             ServiceBook Pros
@@ -31,15 +41,23 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-servicebook-navy hover:text-servicebook-bright transition"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(pathname, link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={
+                  active
+                    ? 'text-servicebook-bright font-semibold border-b-2 border-servicebook-bright'
+                    : 'text-professional-gray hover:text-servicebook-navy transition'
+                }
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href="/contact"
             className="px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"
@@ -53,6 +71,7 @@ export default function Navbar() {
           className="md:hidden text-servicebook-navy"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -61,16 +80,24 @@ export default function Navbar() {
       {/* Mobile menu */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-t px-6 pb-4 space-y-3">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="block text-servicebook-navy hover:text-servicebook-bright transition py-1"
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isActive(pathname, link.href);
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={active ? 'page' : undefined}
+                className={
+                  active
+                    ? 'block text-servicebook-bright font-semibold py-1'
+                    : 'block text-servicebook-navy hover:text-servicebook-bright transition py-1'
+                }
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
           <Link
             href="/contact"
             className="block text-center px-5 py-2 bg-servicebook-bright text-white rounded-md hover:bg-servicebook-light transition"

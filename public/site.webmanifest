@@ -1,15 +1,21 @@
 {
   "name": "ServiceBook Pros",
-  "short_name": "ServiceBook",
+  "short_name": "SB Pros",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#1E3A5F",
-  "background_color": "#F8F9FA"
+  "theme_color": "#003366",
+  "background_color": "#ffffff"
 }

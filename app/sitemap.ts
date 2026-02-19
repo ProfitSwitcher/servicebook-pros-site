@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/contact',
     '/switch-from-housecall-pro',
+    '/switch-from-jobber',
+    '/switch-from-servicetitan',
     '/privacy',
     '/terms',
   ];

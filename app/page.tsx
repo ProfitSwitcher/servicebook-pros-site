@@ -1,6 +1,5 @@
-'use client';
-
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   CalendarCheck,
   FileText,
@@ -14,6 +13,12 @@ import {
   Zap,
   Shield,
 } from 'lucide-react';
+
+export const metadata = {
+  title: 'ServiceBook Pros — Field Service Management for Trades Pros',
+  description:
+    'AI-powered scheduling, invoicing, and job management built for electricians, HVAC techs, and generator pros. Start your free trial today.',
+};
 
 const features = [
   {
@@ -141,10 +146,13 @@ export default function Page() {
             </div>
           </div>
           <div className="flex justify-center">
-            <img
+            <Image
               src="/brand/servicebook_logo_full.png"
               alt="ServiceBook Pros"
+              width={512}
+              height={256}
               className="max-h-64 w-auto drop-shadow-2xl"
+              priority
             />
           </div>
         </div>

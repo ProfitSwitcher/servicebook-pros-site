@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 const footerLinks = [
   {
@@ -7,6 +8,8 @@ const footerLinks = [
       { href: '/features', label: 'Features' },
       { href: '/pricing', label: 'Pricing' },
       { href: '/switch-from-housecall-pro', label: 'Switch from Housecall Pro' },
+      { href: '/switch-from-jobber', label: 'Switch from Jobber' },
+      { href: '/switch-from-servicetitan', label: 'Switch from ServiceTitan' },
     ],
   },
   {
@@ -33,10 +36,11 @@ export default function Footer() {
           {/* Brand column */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <img
+              <Image
                 src="/brand/servicebook-icon.png"
                 alt="ServiceBook Pros"
-                className="h-8 w-8"
+                width={32}
+                height={32}
               />
               <span className="font-semibold text-lg">ServiceBook Pros</span>
             </div>

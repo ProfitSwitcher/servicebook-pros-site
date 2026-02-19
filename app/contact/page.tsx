@@ -19,6 +19,7 @@ export default function ContactPage() {
     phone: '',
     interest: 'demo',
     message: '',
+    website: '',
   });
   const [state, setState] = useState<FormState>('idle');
 
@@ -35,11 +36,19 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          phone: form.phone,
+          interest: form.interest,
+          message: form.message,
+          website: form.website,
+        }),
       });
       if (!res.ok) throw new Error('Request failed');
       setState('sent');
-      setForm({ name: '', email: '', company: '', phone: '', interest: 'demo', message: '' });
+      setForm({ name: '', email: '', company: '', phone: '', interest: 'demo', message: '', website: '' });
     } catch {
       setState('error');
     }
@@ -90,6 +99,19 @@ export default function ContactPage() {
               onSubmit={handleSubmit}
               className="bg-white p-8 rounded-lg border shadow-sm space-y-5"
             >
+              {/* Honeypot field - hidden from users, traps bots */}
+              <input
+                type="text"
+                name="website"
+                id="website"
+                value={form.website}
+                onChange={(e) => setForm({ ...form, website: e.target.value })}
+                style={{ display: 'none' }}
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
+
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-servicebook-navy mb-1">
