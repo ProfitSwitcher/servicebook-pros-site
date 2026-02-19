@@ -11,9 +11,14 @@ out/
 .env
 .env*.local
 
+# playwright
+.playwright-mcp/
+*.png
+
 # debug
 npm-debug.log*
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
