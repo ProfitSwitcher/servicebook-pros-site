@@ -5,80 +5,67 @@ import {
   ArrowRight,
   Upload,
   Settings,
-  CreditCard,
   BookOpen,
-  Users,
   Headphones,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Switch from Housecall Pro — ServiceBook Pros',
+  title: 'Switch from ServiceTitan to ServiceBook Pros | Built for Small Crews',
   description:
-    'Migrate from Housecall Pro to ServiceBook Pros in days, not weeks. Free data migration included.',
+    'ServiceTitan built for enterprise? ServiceBook Pros gives small and mid-sized trades businesses all the power without the complexity or enterprise pricing.',
 };
 
 const comparisons = [
-  { feature: 'Voice-to-Invoice AI', housecall: false, servicebook: true },
-  { feature: 'Pro-Built Price Books', housecall: false, servicebook: true },
-  { feature: 'Offline Mobile Mode', housecall: false, servicebook: true },
-  { feature: 'QuickBooks Sync', housecall: true, servicebook: true },
-  { feature: 'Scheduling & Dispatch', housecall: true, servicebook: true },
-  { feature: 'Customer Portal', housecall: true, servicebook: true },
-  { feature: 'Dedicated Onboarding', housecall: false, servicebook: true },
-  { feature: 'No Long-Term Contract', housecall: false, servicebook: true },
+  { feature: 'Pricing for Small Crews', servicetitan: false, servicebook: true },
+  { feature: 'Setup Time Under 48 Hours', servicetitan: false, servicebook: true },
+  { feature: 'AI Scheduling', servicetitan: false, servicebook: true },
+  { feature: 'True Offline Mode', servicetitan: false, servicebook: true },
+  { feature: 'Trade-Specific Templates', servicetitan: true, servicebook: true },
+  { feature: 'QuickBooks Integration', servicetitan: true, servicebook: true },
+  { feature: 'Mobile App', servicetitan: true, servicebook: true },
+  { feature: 'Dedicated Support on All Plans', servicetitan: false, servicebook: true },
 ];
 
 const steps = [
   {
     icon: Upload,
-    title: 'Export Your Data',
+    title: 'Export Your Data from ServiceTitan',
     detail:
-      'Download your customers, jobs, and invoices from Housecall Pro. We also support direct API migration — just share read-only access.',
+      'Use ServiceTitan\'s built-in data export tool to pull your client records, job history, and custom fields.',
   },
   {
     icon: Settings,
-    title: 'We Import Everything',
+    title: 'We Handle the Heavy Lifting',
     detail:
-      'Our migration team imports your customer list, job history, notes, and attachments into ServiceBook Pros — usually within 48 hours.',
-  },
-  {
-    icon: CreditCard,
-    title: 'Connect Payments & QuickBooks',
-    detail:
-      'Link your payment processor and QuickBooks account. Existing integrations transfer seamlessly.',
+      'Our team maps your client records, job history, and templates — no enterprise onboarding consultant required.',
   },
   {
     icon: BookOpen,
-    title: 'Set Up Price Books',
+    title: 'Custom Template Mapping',
     detail:
-      'Start with our pro-built price books or import your own. Customize line items, labor rates, and markups.',
-  },
-  {
-    icon: Users,
-    title: 'Invite Your Team',
-    detail:
-      'Add technicians, assign roles and permissions, and configure notification preferences.',
+      'Our trade specialists configure your templates for electrical, HVAC, or generator work so your crew can start immediately.',
   },
   {
     icon: Headphones,
-    title: 'Go Live with Support',
+    title: 'Go Live in 48 Hours or Less',
     detail:
-      'Your dedicated onboarding specialist walks you through the first week. Unlimited support included.',
+      'Dedicated onboarding support on every plan. No enterprise contracts, no six-figure setup fees — just a smooth handoff.',
   },
 ];
 
-export default function SwitchPage() {
+export default function SwitchFromServiceTitanPage() {
   return (
     <>
       {/* Header */}
       <section className="bg-gradient-to-br from-servicebook-navy to-[#2a5a8f] text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Switch from Housecall Pro
+            Switch from ServiceTitan to ServiceBook Pros
           </h1>
           <p className="text-lg text-gray-200 max-w-2xl mx-auto">
-            Migrate in days, not weeks. We handle the heavy lifting so you can keep running jobs
-            without skipping a beat.
+            ServiceTitan is built for large enterprises. ServiceBook Pros delivers
+            enterprise-grade features at pricing that works for crews of 1 to 20 — no bloat,
+            no six-figure contracts.
           </p>
           <div className="mt-8">
             <Link
@@ -95,14 +82,14 @@ export default function SwitchPage() {
       <section className="py-20 bg-white px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-            Why Pros Are Switching
+            Enterprise Power, Small-Crew Pricing
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b-2">
                   <th className="py-3 text-servicebook-navy">Feature</th>
-                  <th className="py-3 text-center text-gray-500">Housecall Pro</th>
+                  <th className="py-3 text-center text-gray-500">ServiceTitan</th>
                   <th className="py-3 text-center text-servicebook-bright">ServiceBook Pros</th>
                 </tr>
               </thead>
@@ -111,7 +98,7 @@ export default function SwitchPage() {
                   <tr key={row.feature} className="border-b">
                     <td className="py-3 text-professional-gray">{row.feature}</td>
                     <td className="py-3 text-center">
-                      {row.housecall ? (
+                      {row.servicetitan ? (
                         <CheckCircle className="h-5 w-5 text-gray-400 mx-auto" />
                       ) : (
                         <span className="text-gray-300">—</span>
@@ -132,7 +119,7 @@ export default function SwitchPage() {
       <section className="py-20 bg-light-gray px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-            How It Works
+            How Migration Works
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {steps.map(({ icon: Icon, title, detail }, idx) => (
@@ -154,20 +141,18 @@ export default function SwitchPage() {
       <section className="py-16 bg-white px-4">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xl text-professional-gray italic leading-relaxed mb-4">
-            &ldquo;We were nervous about switching, but the ServiceBook team migrated 3 years of
-            customer data in two days. We didn&apos;t miss a single appointment.&rdquo;
+            &ldquo;We were paying $800/month for ServiceTitan features we barely used. ServiceBook
+            Pros does everything we need at a fraction of the cost.&rdquo;
           </p>
-          <p className="font-semibold text-servicebook-navy">Sarah K.</p>
-          <p className="text-sm text-gray-500">HVAC Business Owner, Denver CO</p>
+          <p className="font-semibold text-servicebook-navy">Dave H.</p>
+          <p className="text-sm text-gray-500">HVAC Owner, Nashville TN</p>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-16 bg-servicebook-navy text-white px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">
-            Ready to Make the Switch?
-          </h2>
+          <h2 className="text-2xl font-bold mb-4">Ready to Right-Size Your Software?</h2>
           <p className="text-gray-300 mb-6">
             Free migration assistance included with every plan. No long-term contracts.
           </p>

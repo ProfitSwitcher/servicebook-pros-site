@@ -6,79 +6,65 @@ import {
   Upload,
   Settings,
   CreditCard,
-  BookOpen,
-  Users,
   Headphones,
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Switch from Housecall Pro — ServiceBook Pros',
+  title: 'Switch from Jobber to ServiceBook Pros | Better Field Service Software',
   description:
-    'Migrate from Housecall Pro to ServiceBook Pros in days, not weeks. Free data migration included.',
+    'Tired of Jobber\'s limitations? ServiceBook Pros offers AI-powered scheduling, real offline mode, and pricing built for trades pros. Switch in 48 hours.',
 };
 
 const comparisons = [
-  { feature: 'Voice-to-Invoice AI', housecall: false, servicebook: true },
-  { feature: 'Pro-Built Price Books', housecall: false, servicebook: true },
-  { feature: 'Offline Mobile Mode', housecall: false, servicebook: true },
-  { feature: 'QuickBooks Sync', housecall: true, servicebook: true },
-  { feature: 'Scheduling & Dispatch', housecall: true, servicebook: true },
-  { feature: 'Customer Portal', housecall: true, servicebook: true },
-  { feature: 'Dedicated Onboarding', housecall: false, servicebook: true },
-  { feature: 'No Long-Term Contract', housecall: false, servicebook: true },
+  { feature: 'AI-Powered Scheduling', jobber: false, servicebook: true },
+  { feature: 'True Offline Mode', jobber: false, servicebook: true },
+  { feature: 'Trade-Specific Templates', jobber: false, servicebook: true },
+  { feature: 'Generator Service Tracking', jobber: false, servicebook: true },
+  { feature: 'Built-in Equipment History', jobber: false, servicebook: true },
+  { feature: 'Mobile-First Design', jobber: true, servicebook: true },
+  { feature: 'QuickBooks Integration', jobber: true, servicebook: true },
+  { feature: 'Pricing for Trades Pros', jobber: false, servicebook: true },
 ];
 
 const steps = [
   {
     icon: Upload,
-    title: 'Export Your Data',
+    title: 'Export Your Data from Jobber',
     detail:
-      'Download your customers, jobs, and invoices from Housecall Pro. We also support direct API migration — just share read-only access.',
+      'We support CSV export and direct import from Jobber. Export your clients, jobs, and invoices in minutes.',
   },
   {
     icon: Settings,
-    title: 'We Import Everything',
+    title: 'Our Team Maps Your Data',
     detail:
-      'Our migration team imports your customer list, job history, notes, and attachments into ServiceBook Pros — usually within 48 hours.',
+      'Our migration specialists map your client records, job history, and custom fields into ServiceBook Pros — no spreadsheet wrangling on your end.',
   },
   {
     icon: CreditCard,
-    title: 'Connect Payments & QuickBooks',
+    title: 'Import Service History & Templates',
     detail:
-      'Link your payment processor and QuickBooks account. Existing integrations transfer seamlessly.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Set Up Price Books',
-    detail:
-      'Start with our pro-built price books or import your own. Customize line items, labor rates, and markups.',
-  },
-  {
-    icon: Users,
-    title: 'Invite Your Team',
-    detail:
-      'Add technicians, assign roles and permissions, and configure notification preferences.',
+      'We bring over your service history and set up trade-specific templates for electrical, HVAC, or generator work.',
   },
   {
     icon: Headphones,
-    title: 'Go Live with Support',
+    title: 'Go Live in 48 Hours',
     detail:
-      'Your dedicated onboarding specialist walks you through the first week. Unlimited support included.',
+      'Free onboarding support walks you through your first week. Your crew is up and running without missing a beat.',
   },
 ];
 
-export default function SwitchPage() {
+export default function SwitchFromJobberPage() {
   return (
     <>
       {/* Header */}
       <section className="bg-gradient-to-br from-servicebook-navy to-[#2a5a8f] text-white py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Switch from Housecall Pro
+            Switch from Jobber to ServiceBook Pros
           </h1>
           <p className="text-lg text-gray-200 max-w-2xl mx-auto">
-            Migrate in days, not weeks. We handle the heavy lifting so you can keep running jobs
-            without skipping a beat.
+            Jobber is built for general home services. ServiceBook Pros is built specifically for
+            electricians, HVAC techs, and generator pros — with the AI tools your trade demands.
           </p>
           <div className="mt-8">
             <Link
@@ -95,14 +81,14 @@ export default function SwitchPage() {
       <section className="py-20 bg-white px-4">
         <div className="max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-            Why Pros Are Switching
+            Why Trades Pros Are Leaving Jobber
           </h2>
           <div className="overflow-x-auto">
             <table className="w-full text-left">
               <thead>
                 <tr className="border-b-2">
                   <th className="py-3 text-servicebook-navy">Feature</th>
-                  <th className="py-3 text-center text-gray-500">Housecall Pro</th>
+                  <th className="py-3 text-center text-gray-500">Jobber</th>
                   <th className="py-3 text-center text-servicebook-bright">ServiceBook Pros</th>
                 </tr>
               </thead>
@@ -111,7 +97,7 @@ export default function SwitchPage() {
                   <tr key={row.feature} className="border-b">
                     <td className="py-3 text-professional-gray">{row.feature}</td>
                     <td className="py-3 text-center">
-                      {row.housecall ? (
+                      {row.jobber ? (
                         <CheckCircle className="h-5 w-5 text-gray-400 mx-auto" />
                       ) : (
                         <span className="text-gray-300">—</span>
@@ -132,7 +118,7 @@ export default function SwitchPage() {
       <section className="py-20 bg-light-gray px-4">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-bold text-servicebook-navy text-center mb-12">
-            How It Works
+            How Migration Works
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {steps.map(({ icon: Icon, title, detail }, idx) => (
@@ -154,20 +140,18 @@ export default function SwitchPage() {
       <section className="py-16 bg-white px-4">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xl text-professional-gray italic leading-relaxed mb-4">
-            &ldquo;We were nervous about switching, but the ServiceBook team migrated 3 years of
-            customer data in two days. We didn&apos;t miss a single appointment.&rdquo;
+            &ldquo;I switched from Jobber after 3 years. The trade-specific templates alone saved
+            me hours every week. I wish I had made the move sooner.&rdquo;
           </p>
-          <p className="font-semibold text-servicebook-navy">Sarah K.</p>
-          <p className="text-sm text-gray-500">HVAC Business Owner, Denver CO</p>
+          <p className="font-semibold text-servicebook-navy">Carlos M.</p>
+          <p className="text-sm text-gray-500">Electrical Contractor, Phoenix AZ</p>
         </div>
       </section>
 
       {/* CTA */}
       <section className="py-16 bg-servicebook-navy text-white px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-bold mb-4">
-            Ready to Make the Switch?
-          </h2>
+          <h2 className="text-2xl font-bold mb-4">Ready to Make the Switch?</h2>
           <p className="text-gray-300 mb-6">
             Free migration assistance included with every plan. No long-term contracts.
           </p>

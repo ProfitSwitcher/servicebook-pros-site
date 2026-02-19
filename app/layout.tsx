@@ -1,13 +1,15 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter, Poppins } from 'next/font/google';
+import { Inter } from 'next/font/google';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin'], weight: ['400', '500', '600'] });
-const poppins = Poppins({ subsets: ['latin'], weight: ['400', '500', '600', '700'] });
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 
 export const metadata: Metadata = {
   title: 'ServiceBook Pros — AI-First Field Service Management',
-  description: 'All-in-one CRM for electricians and trades: scheduling & dispatch, voice-to-invoice, QuickBooks sync, price books, and offline-friendly mobile.',
+  description:
+    'All-in-one CRM for electricians and trades: scheduling & dispatch, voice-to-invoice, QuickBooks sync, price books, and offline-friendly mobile.',
   metadataBase: new URL('https://servicebookpros.com'),
   icons: {
     icon: '/favicon.svg',
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     siteName: 'ServiceBook Pros',
     images: [
       {
-        url: '/brand/servicebook_logo_full.png',
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ServiceBook Pros',
@@ -36,9 +38,8 @@ export const metadata: Metadata = {
     title: 'ServiceBook Pros',
     description:
       'AI-first field service management for trades. Schedule, dispatch, invoice, sync with QuickBooks, and more.',
-    images: ['/brand/servicebook_logo_full.png'],
+    images: ['/og-image.png'],
   },
-
 };
 
 export default function RootLayout({
@@ -47,9 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.className} ${poppins.className}`}>
-      <body className="bg-light-gray text-professional-gray antialiased">
-        {children}
+    <html lang="en">
+      <body className={`${inter.variable} bg-light-gray text-professional-gray antialiased font-sans`}>
+        <Navbar />
+        <main className="min-h-screen">{children}</main>
+        <Footer />
       </body>
     </html>
   );
